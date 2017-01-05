@@ -175,8 +175,11 @@ public class Person{
                     jobType.getAttribute().getWisdom() + weapon.getAttribute().getWisdom(),
                     jobType.getAttribute().getResistance() + weapon.getAttribute().getResistance());
     }
-    public boolean initiateChecker(PersonStatus status) {
+    public boolean isStatus(PersonStatus status) {
         return getStatus() == status;
+    }
+    public boolean isNotStatus(PersonStatus status){
+        return getStatus() != status;
     }
 
 }

@@ -77,6 +77,7 @@ public class Spell extends SpellEffect {
             case SLEEP:
                 break;
             case STUN:
+                target.setStatus(Person.PersonStatus.STUN);
                 break;
             case INCREASESTATS:
                 break;

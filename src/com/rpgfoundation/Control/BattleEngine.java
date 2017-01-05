@@ -32,7 +32,7 @@ public class BattleEngine {
 
     public static void updateAfter() {
         for (int i = 0; i < characterList.size(); i++) {
-            if (characterList.get(i).getStatus() == Person.PersonStatus.FLEE)
+            if (characterList.get(i).isStatus(Person.PersonStatus.FLEE))
                 characterList.remove(characterList.get(i));
         }
         descendingOrder();
@@ -44,10 +44,10 @@ public class BattleEngine {
         int good = 0;
 
         for (int i = 0; i < characterList.size(); i++) {
-            if (characterList.get(i).getTeam() == Person.Side.ENEMY && characterList.get(i).getStatus() != Person.PersonStatus.DEAD) {
+            if (characterList.get(i).getTeam() == Person.Side.ENEMY && characterList.get(i).isNotStatus(Person.PersonStatus.DEAD)) {
                 bad++;
             }
-            if (characterList.get(i).getTeam() == Person.Side.PLAYER && characterList.get(i).getStatus() != Person.PersonStatus.DEAD) {
+            if (characterList.get(i).getTeam() == Person.Side.PLAYER && characterList.get(i).isNotStatus(Person.PersonStatus.DEAD)) {
                 good++;
             }
         }
@@ -57,10 +57,10 @@ public class BattleEngine {
             return true;
     }
 
-    //Display the order that the special sorting function via haste value.
+    //Display the order that the special sorting function via dexterity value.
     public static void characterTurn() {
         for (int i = 0; i < characterList.size(); i++) {
-            if (characterList.get(i).initiateChecker(Person.PersonStatus.DEAD) || characterList.get(i).initiateChecker(Person.PersonStatus.STUN)) {
+            if (characterList.get(i).isStatus(Person.PersonStatus.DEAD) || characterList.get(i).isStatus(Person.PersonStatus.STUN)) {
                 turnEnd(characterList.get(i));
             }
             IO.actionChoice(characterList.get(i));
