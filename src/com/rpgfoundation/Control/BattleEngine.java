@@ -39,15 +39,19 @@ public class BattleEngine {
 
     }
 
-    public static boolean checker() {                           //This function will be use to check to see if the game is over or not. This will depend if there are any more players on an opposing team.
+    public static boolean checker() {
+    //This function will be use to check to see if the game is over or not.
+    //This will depend if there are any more players on an opposing team.
         int bad = 0;
         int good = 0;
 
         for (int i = 0; i < characterList.size(); i++) {
-            if (characterList.get(i).getTeam() == Person.Side.ENEMY && characterList.get(i).isNotStatus(Person.PersonStatus.DEAD)) {
+            if (characterList.get(i).getTeam() == Person.Side.ENEMY &&
+                    characterList.get(i).isNotStatus(Person.PersonStatus.DEAD)) {
                 bad++;
             }
-            if (characterList.get(i).getTeam() == Person.Side.PLAYER && characterList.get(i).isNotStatus(Person.PersonStatus.DEAD)) {
+            if (characterList.get(i).getTeam() == Person.Side.PLAYER &&
+                    characterList.get(i).isNotStatus(Person.PersonStatus.DEAD)) {
                 good++;
             }
         }
@@ -60,7 +64,8 @@ public class BattleEngine {
     //Display the order that the special sorting function via dexterity value.
     public static void characterTurn() {
         for (int i = 0; i < characterList.size(); i++) {
-            if (characterList.get(i).isStatus(Person.PersonStatus.DEAD) || characterList.get(i).isStatus(Person.PersonStatus.STUN)) {
+            if (characterList.get(i).isStatus(Person.PersonStatus.DEAD) ||
+                    characterList.get(i).isStatus(Person.PersonStatus.STUN)) {
                 turnEnd(characterList.get(i));
             }
             IO.actionChoice(characterList.get(i));

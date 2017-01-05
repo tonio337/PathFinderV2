@@ -41,13 +41,16 @@ public class IO {
         IO.printHeader("Character List");
         for(int i = 0; i < BattleEngine.characterList.size(); i++)
         {
-            System.out.println((i+1) + ". " + BattleEngine.characterList.get(i).getName() + " = " + BattleEngine.characterList.get(i).getTeam() + " - " + BattleEngine.characterList.get(i).getStatus());
+            System.out.println((i+1) + ". " + BattleEngine.characterList.get(i).getName() + " = " +
+                    BattleEngine.characterList.get(i).getTeam() + " - " +
+                    BattleEngine.characterList.get(i).getStatus());
         }
 
         System.out.println("Choose a target: ");
         int value = IO.inputInt();
         if(value-1 < BattleEngine.characterList.size()+1 && value > 0) {
-            if(BattleEngine.characterList.get(value - 1).getStatus() == Person.PersonStatus.DEAD || BattleEngine.characterList.get(value - 1).getStatus() == Person.PersonStatus.FLEE)
+            if(BattleEngine.characterList.get(value - 1).getStatus() == Person.PersonStatus.DEAD ||
+                    BattleEngine.characterList.get(value - 1).getStatus() == Person.PersonStatus.FLEE)
             {
                 System.out.println("Target can't be attack.");
                 return findTarget();
@@ -92,7 +95,8 @@ public class IO {
     {
         IO.printHeaderName(player.getName() + " - " + player.getSpecialty() +
                 " - (HEALTH: " + player.getCurrent_Health() + "/" + player.getHealth() +
-                " | " + player.getResourceType() + ": " + player.getCurrent_Resource() + "/" + player.getResource() + ")");
+                " | " + player.getResourceType() + ": " + player.getCurrent_Resource() +
+                "/" + player.getResource() + ")");
     }
 
     public static void damageReport(Person player, Person target, int damage)
@@ -100,13 +104,15 @@ public class IO {
         System.out.println(target.getName() + " Health Pool is: " + target.getHealth());
         if(player.getName() == target.getName())
         {
-            System.out.println(player.getName() + " attack themselves out of confusion for: " + damage + " physical damage.");
+            System.out.println(player.getName() + " attack themselves out of confusion for: " +
+                    damage + " physical damage.");
         }
         else if(player.getTeam() == target.getTeam())
         {
             System.out.println(player.getName() + " has attack their teammate for: " + damage + " physical damage.");
         }
-        else{System.out.println(player.getName() + " is attacking "  + target.getName() + " for " + damage + " physical damage.");}
+        else{System.out.println(player.getName() + " is attacking "  + target.getName() + " for " +
+                damage + " physical damage.");}
 
         if(player.getSpecialty() == Person.ClassRole.WARRIOR)
         {
