@@ -36,7 +36,6 @@ public class BattleEngine {
                 characterList.remove(characterList.get(i));
         }
         descendingOrder();
-
     }
 
     public static boolean checker() {

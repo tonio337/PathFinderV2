@@ -6,7 +6,9 @@ import com.rpgfoundation.JobType.JobType;
 import com.rpgfoundation.JobType.Paladin;
 import com.rpgfoundation.JobType.Warrior;
 import com.rpgfoundation.Secondary.Attribute;
+import com.rpgfoundation.Secondary.Spell;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -63,16 +65,19 @@ public class Person{
         ENERGY;
     }
 
+    private ArrayList<Spell> spells = new ArrayList<>();
+
     protected PersonStatus status;
     protected Side team;
     protected ClassRole specialty;
     protected ResourceType resourceType;
     protected String title;
 
-    private static JobType jobType;
-    private static Attribute attribute;
-    private static Weapon weapon;
-    private static Armor armor;
+    private JobType jobType;
+    private Attribute attribute;
+    private Weapon weapon;
+    private Armor armor;
+    private Spell spell;
 
     public Person(String name,int level,Weapon weapon,Side team, ClassRole specialty) {
         this.name = name;
@@ -139,7 +144,7 @@ public class Person{
     public Attribute getAttribute() {
         return attribute;
     }
-    public static JobType getJobType() {
+    public JobType getJobType() {
         return jobType;
     }
 

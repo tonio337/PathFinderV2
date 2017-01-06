@@ -7,13 +7,48 @@ import com.rpgfoundation.Control.IO;
 import com.rpgfoundation.Gear.Weapon;
 import com.rpgfoundation.JobType.Paladin;
 import com.rpgfoundation.Secondary.Attribute;
+import com.rpgfoundation.Secondary.Modify.SpellEffect;
+import com.rpgfoundation.Secondary.Spell;
+
+import java.io.File;
+import java.util.ArrayList;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
 
 
 public class Main {
 
     public static void main(String[] args)
     {
-        game();
+        Spell testingSpell = new Spell();
+        testingSpell.setName("Judgement");
+        testingSpell.setManaCost(15);
+        testingSpell.setCoolDown(1);
+        testingSpell.setDamageModifier(5);
+        testingSpell.setEffect(SpellEffect.Mechanic.DAMAGE);
+        testingSpell.setType(SpellEffect.TargetType.ENEMYPARTY);
+
+        try{
+            File testFile = new File("C:\\users\\brandon\\desktop\\file.xml");
+            JAXBContext jaxbContext = JAXBContext.newInstance(Spell.class);
+            //Marshaller jabMarshaller = jaxbContext.createMarshaller();
+
+            //jabMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+            Unmarshaller breakdown = jaxbContext.createUnmarshaller();
+
+            Spell paladinSpell = (Spell) breakdown.unmarshal(testFile);
+            System.out.println(paladinSpell.getDescription());
+            //jabMarshaller.marshal(testingSpell, testFile);
+            //jabMarshaller.marshal(testingSpell, System.out);
+
+        }catch(JAXBException e)
+        {
+            e.printStackTrace();
+        }
+        //game();
 
     }
 
