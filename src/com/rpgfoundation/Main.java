@@ -29,7 +29,7 @@ public class Main {
     {
         Weapon testWep = new Weapon(2,5,2.6, new Attribute(0,0,0,0,0,0));
         //Test Weapon
-        int npcGenerate = 2; //(int)(Math.random()*10)+2;
+        int npcGenerate = 3; //(int)(Math.random()*10)+2;
         // From the range of 2-12 since it can randomly only do 1 character at a time.
         Person[] characterNumber = new Person[npcGenerate];
         //Creating an object array using the Character class.

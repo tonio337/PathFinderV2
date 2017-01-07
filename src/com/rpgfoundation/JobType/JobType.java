@@ -35,11 +35,6 @@ public class JobType {
     public void spell(Person player)
     {
         IO.spellCall(player);
-        switch(IO.inputInt())
-        {
-            case 1:
-                //TODO Figure out a system to expand a case switch system to match the size of an arraylist.
-        }
     }
 
     public static Attribute generateStats(int a, int b) {

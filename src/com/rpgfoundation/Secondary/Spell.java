@@ -1,6 +1,7 @@
 package com.rpgfoundation.Secondary;
 
 import com.rpgfoundation.Character.Person;
+import com.rpgfoundation.Control.IO;
 import com.rpgfoundation.Secondary.Modify.SpellEffect;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -89,8 +90,21 @@ public class Spell extends SpellEffect{
         switch(getEffect())
         {
             case DAMAGE:
+                target.setCurrent_Health(target.getCurrent_Health() - caster.getAttribute().getStrength()*damageModifier);
+                IO.damageReport(caster,target,caster.getAttribute().getStrength()*damageModifier);
                 break;
             case HEAL:
+                if(target.getCurrent_Health() == target.getHealth())
+                {
+                    target.setCurrent_Health(target.getHealth());
+                    System.out.println(target.getName() + " is at full health");
+                }
+                target.setCurrent_Health(target.getCurrent_Health() + caster.getAttribute().getIntellect() * damageModifier);
+                if(target.getCurrent_Health() > target.getHealth())
+                {
+                    target.setCurrent_Health(target.getHealth());
+                }
+                IO.damageReport(caster,target,caster.getAttribute().getIntellect()*damageModifier);
                 break;
             case CURSE:
                 break;

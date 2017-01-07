@@ -49,7 +49,7 @@ public class IO {
         IO.printHeader("Character List");
         for(int i = 0; i < BattleEngine.characterList.size(); i++)
         {
-            System.out.println((i+1) + ". " + BattleEngine.characterList.get(i).getName() + " = " +
+            System.out.println(i + 1 + ". " + BattleEngine.characterList.get(i).getName() + " = " +
                     BattleEngine.characterList.get(i).getTeam() + " - " +
                     BattleEngine.characterList.get(i).getStatus());
         }
@@ -105,6 +105,8 @@ public class IO {
         {
             System.out.println(i+1 + ". " + player.getSpell().get(i).getName());
         }
+
+        player.getSpell().get(inputInt()-1).cast(player,findTarget());
     }
     public static void nameHeader(Person player)
     {
