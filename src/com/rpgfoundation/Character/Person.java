@@ -100,10 +100,12 @@ public class Person{
                 this.spells = IO.readFile(paladinSpell, spells);
                 break;
             case WARRIOR:
+                File warriorSpell = new File("src/bin/xml/WarriorSpellList.xml");
                 this.resource = 100;
                 this.current_Resource = 0;
                 this.resourceType = ResourceType.RAGE;
                 this.jobType = new Warrior();
+                this.spells = IO.readFile(warriorSpell, spells);
                 break;
         }
         this.attribute = statsCombine();

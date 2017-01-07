@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Spells>
+    <Spell effect="DAMAGE" type="TARGET">
+        <name>Rend</name>
+        <description>Cut the target to make them bleed over an amount of turn.</description>
+        <manaCost>15</manaCost>
+        <duration>0</duration>
+        <coolDown>1</coolDown>
+        <damageModifier>2</damageModifier>
+    </Spell>
+    <Spell effect="STUN" type="TARGET">
+        <name>Charge</name>
+        <description>Charge at a target and stun them for 1 turn.</description>
+        <manaCost>-10</manaCost>
+        <duration>1</duration>
+        <coolDown>1</coolDown>
+        <damageModifier>1</damageModifier>
+    </Spell>
+</Spells>
