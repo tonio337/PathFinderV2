@@ -1,5 +1,6 @@
 package com.rpgfoundation.Character;
 import com.rpgfoundation.Control.BattleEngine;
+import com.rpgfoundation.Control.IO;
 import com.rpgfoundation.Gear.Armor;
 import com.rpgfoundation.Gear.Weapon;
 import com.rpgfoundation.JobType.JobType;
@@ -8,6 +9,7 @@ import com.rpgfoundation.JobType.Warrior;
 import com.rpgfoundation.Secondary.Attribute;
 import com.rpgfoundation.Secondary.Spell;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -65,7 +67,7 @@ public class Person{
         ENERGY;
     }
 
-    private ArrayList<Spell> spells = new ArrayList<>();
+    private ArrayList<Spell> spells = new ArrayList<Spell>();
 
     protected PersonStatus status;
     protected Side team;
@@ -90,10 +92,12 @@ public class Person{
         switch(specialty)
         {
             case PALADIN:
+                File paladinSpell = new File("src/bin/xml/PaladinSpellList.xml");
                 this.resource = 100;
                 this.current_Resource = 100;
                 this.resourceType = ResourceType.MANA;
                 this.jobType = new Paladin();
+                this.spells = IO.readFile(paladinSpell, spells);
                 break;
             case WARRIOR:
                 this.resource = 100;
@@ -147,6 +151,7 @@ public class Person{
     public JobType getJobType() {
         return jobType;
     }
+    public ArrayList<Spell> getSpell(){ return spells;}
 
     public void setResource(int resource) {
         this.resource = resource;

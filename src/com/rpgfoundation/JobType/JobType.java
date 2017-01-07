@@ -1,6 +1,8 @@
 package com.rpgfoundation.JobType;
 
+import com.rpgfoundation.Control.IO;
 import com.rpgfoundation.Secondary.Attribute;
+import com.rpgfoundation.Character.Person;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,9 +32,14 @@ public class JobType {
         return title;
     }
 
-    public void spell()
+    public void spell(Person player)
     {
-
+        IO.spellCall(player);
+        switch(IO.inputInt())
+        {
+            case 1:
+                //TODO Figure out a system to expand a case switch system to match the size of an arraylist.
+        }
     }
 
     public static Attribute generateStats(int a, int b) {

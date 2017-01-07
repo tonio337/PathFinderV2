@@ -1,7 +1,15 @@
 package com.rpgfoundation.Control;
 
 import com.rpgfoundation.Character.Person;
+import com.rpgfoundation.Secondary.Modify.SpellHolder;
+import com.rpgfoundation.Secondary.Spell;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
+import java.io.File;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -77,7 +85,7 @@ public class IO {
                 //player.attack(findTarget());
                 break;
             case 2:                     //Will call the spell attack function base off the jobType.
-                player.getJobType().spell();
+                player.getJobType().spell(player);
                 break;
             case 3:                     //Gear System later on
                 break;
@@ -90,7 +98,14 @@ public class IO {
         }
     }
 
-
+    public static void spellCall(Person player)
+    {
+        IO.printHeader(player.getSpecialty() + " Moves Set");
+        for(int i = 0; i < player.getSpell().size(); i++)
+        {
+            System.out.println(i+1 + ". " + player.getSpell().get(i).getName());
+        }
+    }
     public static void nameHeader(Person player)
     {
         IO.printHeaderName(player.getName() + " - " + player.getSpecialty() +
@@ -98,6 +113,7 @@ public class IO {
                 " | " + player.getResourceType() + ": " + player.getCurrent_Resource() +
                 "/" + player.getResource() + ")");
     }
+
 
     public static void damageReport(Person player, Person target, int damage)
     {
@@ -134,5 +150,37 @@ public class IO {
     public static void run(Person player) {
         System.out.println(player.getName() + " has flee");
         player.setStatus(Person.PersonStatus.FLEE);
+    }
+
+
+    public static ArrayList<Spell> readFile(File files,ArrayList<Spell> mainList)
+    {
+        try {
+            JAXBContext jaxbContext = JAXBContext.newInstance(SpellHolder.class);
+            Unmarshaller breakdown = jaxbContext.createUnmarshaller();
+            SpellHolder paladinSpell = (SpellHolder) breakdown.unmarshal(files);
+            for (Spell spe : paladinSpell.getSpellSet())
+                mainList.add(spe);
+            return mainList;
+        }catch(JAXBException e)
+        {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    public static void createFile(Object set)
+    {
+        try{
+            File testFile = new File("src/input.xml");
+            JAXBContext jaxbContext = JAXBContext.newInstance(SpellHolder.class);
+            Marshaller jabMarshaller = jaxbContext.createMarshaller();
+
+            jabMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+            jabMarshaller.marshal(set, testFile);
+            jabMarshaller.marshal(set,System.out);
+        }catch(JAXBException e)
+        {
+            e.printStackTrace();
+        }
     }
 }

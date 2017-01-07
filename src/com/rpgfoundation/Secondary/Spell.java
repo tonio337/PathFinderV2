@@ -3,21 +3,16 @@ package com.rpgfoundation.Secondary;
 import com.rpgfoundation.Character.Person;
 import com.rpgfoundation.Secondary.Modify.SpellEffect;
 
-import java.io.File;
-import java.util.List;
-
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * Created by Brandon on 1/5/2017.
  */
 
-@XmlRootElement
+@XmlRootElement(name = "Spell")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Spell extends SpellEffect{
 
     private String name;
@@ -66,23 +61,18 @@ public class Spell extends SpellEffect{
         return description;
     }
 
-    @XmlElement
     public void setName(String name) {
         this.name = name;
     }
-    @XmlElement
     public void setManaCost(int manaCost) {
         this.manaCost = manaCost;
     }
-    @XmlElement
     public void setDuration(int duration) {
         this.duration = duration;
     }
-    @XmlElement
     public void setCoolDown(int coolDown) {
         this.coolDown = coolDown;
     }
-    @XmlElement
     public void setDamageModifier(int damageModifier){
         this.damageModifier = damageModifier;
     }
@@ -91,10 +81,10 @@ public class Spell extends SpellEffect{
     public void cast(Person caster, Person target)
     {
         caster.setCurrent_Resource(caster.getCurrent_Resource() - getManaCost());
-        ApplySpell(caster, target);
+        applySpell(caster, target);
     }
 
-    public void ApplySpell(Person caster, Person target)
+    public void applySpell(Person caster, Person target)
     {
         switch(getEffect())
         {
@@ -117,27 +107,5 @@ public class Spell extends SpellEffect{
                 break;
             default:
         }
-    }
-
-    public void readFile(File files)
-    {
-        try{
-            JAXBContext jaxbContext = JAXBContext.newInstance(SpellHolder.class);
-            Unmarshaller breakdown = jaxbContext.createUnmarshaller();
-            Spell paladinSpell = (Spell) breakdown.unmarshal(files);
-            System.out.println(paladinSpell.getDescription());
-
-        }catch(JAXBException e)
-        {
-            e.printStackTrace();
-        }
-    }
-}
-class SpellHolder{
-    private List<Spell> spellList;
-
-    @XmlElement
-    public List<Spell> getSpellList(){
-        return spellList;
     }
 }
