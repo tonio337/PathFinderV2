@@ -4,6 +4,7 @@ import com.rpgfoundation.Secondary.Spell;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.util.List;
 
 /**
  * Created by Brandon on 1/5/2017.
@@ -18,19 +19,28 @@ public class SpellEffect {
         SELF,PARTY,ENEMYPARTY,TARGET;
     }
 
+
+    private int duration;
+    private int coolDown;
+    private int damageModifier;
+
     protected Mechanic effect;
     protected TargetType type;
 
-    public SpellEffect(Mechanic effect, TargetType type) {
+    public SpellEffect(int duration, int coolDown, int damageModifier, Mechanic effect, TargetType type) {
+        this.duration = duration;
+        this.coolDown = coolDown;
+        this.damageModifier = damageModifier;
         this.effect = effect;
         this.type = type;
     }
+
     public SpellEffect(){
 
     }
 
     @XmlAttribute
-    public Mechanic getEffect() {
+    public Mechanic getMechanic() {
         return effect;
     }
     @XmlAttribute
@@ -38,8 +48,28 @@ public class SpellEffect {
         return type;
     }
 
+    public void setDuration(int duration) {
+        this.duration = duration;
+    }
+    public void setCoolDown(int coolDown) {
+        this.coolDown = coolDown;
+    }
+    public void setDamageModifier(int damageModifier){
+        this.damageModifier = damageModifier;
+    }
     public void setEffect(Mechanic effect) {
         this.effect = effect;
+    }
+
+
+    public int getDuration() {
+        return duration;
+    }
+    public int getCoolDown() {
+        return coolDown;
+    }
+    public int getDamageModifier(){
+        return damageModifier;
     }
 
     public void setType(TargetType type) {

@@ -1,19 +1,34 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Spells>
-    <Spell effect="DAMAGE" type="TARGET">
-        <name>Rend</name>
-        <description>Cut the target to make them bleed over an amount of turn.</description>
-        <manaCost>15</manaCost>
+    <Spell>
+        <coolDown>0</coolDown>
+        <damageModifier>0</damageModifier>
         <duration>0</duration>
-        <coolDown>1</coolDown>
-        <damageModifier>2</damageModifier>
-    </Spell>
-    <Spell effect="STUN" type="TARGET">
         <name>Charge</name>
-        <description>Charge at a target and stun them for 1 turn.</description>
+        <description>Running in to the enemy gaining rage and stunning the enemy.</description>
         <manaCost>-10</manaCost>
-        <duration>1</duration>
-        <coolDown>1</coolDown>
-        <damageModifier>1</damageModifier>
+        <effects effect="DAMAGE" type="TARGET">
+            <coolDown>0</coolDown>
+            <damageModifier>5</damageModifier>
+            <duration>0</duration>
+        </effects>
+        <effects effect="STUN" type="TARGET">
+            <coolDown>0</coolDown>
+            <damageModifier>0</damageModifier>
+            <duration>1</duration>
+        </effects>
+    </Spell>
+    <Spell>
+        <coolDown>0</coolDown>
+        <damageModifier>0</damageModifier>
+        <duration>0</duration>
+        <name>Rend</name>
+        <description>Striking the enemy and cause a bleed on the target</description>
+        <manaCost>20</manaCost>
+        <effects effect="DAMAGE" type="TARGET">
+            <coolDown>0</coolDown>
+            <damageModifier>6</damageModifier>
+            <duration>0</duration>
+        </effects>
     </Spell>
 </Spells>

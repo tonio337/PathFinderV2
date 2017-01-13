@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.Comparator;
 
 import com.rpgfoundation.Character.Person;
+import com.rpgfoundation.Secondary.Spell;
 
 /**
  * Created by Brandon on 1/2/2017.
@@ -24,6 +25,15 @@ public class BattleEngine {
 
 
     public static void turnEnd(Person player) {
+        if(!player.getBuffSystem().isEmpty())
+        {
+            System.out.println("Buff System is not empty");
+            System.out.println("Buff that are on the units");
+            for(int i = 0; i < player.getBuffSystem().size(); i++)
+            {
+                player.getBuffSystem().get(i).buffAfter(player);
+            }
+        }
         if (player.getHealth() <= 0) {
             player.setStatus(Person.PersonStatus.DEAD);
         }

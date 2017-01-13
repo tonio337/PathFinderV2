@@ -3,15 +3,38 @@ package com.rpgfoundation;
 import com.rpgfoundation.Character.Human;
 import com.rpgfoundation.Character.Person;
 import com.rpgfoundation.Control.BattleEngine;
+import com.rpgfoundation.Control.IO;
 import com.rpgfoundation.Gear.Weapon;
 import com.rpgfoundation.Secondary.Attribute;
+import com.rpgfoundation.Secondary.Modify.SpellEffect;
+import com.rpgfoundation.Secondary.Modify.SpellHolder;
+import com.rpgfoundation.Secondary.Spell;
 
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Main {
 
     public static void main(String[] args)
     {
+        /*ArrayList<SpellEffect> testingEffect = new ArrayList<>();
+        ArrayList<SpellEffect> testingEffect2 = new ArrayList<>();
+
+        SpellHolder spells = new SpellHolder();
+        spells.setSpellSet(new ArrayList<Spell>());
+
+
+        testingEffect.add(new SpellEffect(0,0,5,SpellEffect.Mechanic.DAMAGE, SpellEffect.TargetType.TARGET));
+        testingEffect.add(new SpellEffect(1,0,0,SpellEffect.Mechanic.STUN, SpellEffect.TargetType.TARGET));
+        testingEffect2.add(new SpellEffect(0,0,6, SpellEffect.Mechanic.DAMAGE, SpellEffect.TargetType.TARGET));
+        Spell testingList = new Spell("Charge", "Running in to the enemy gaining rage and stunning the enemy.", -10, testingEffect);
+        Spell testingList2 = new Spell("Rend", "Striking the enemy and cause a bleed on the target",20, testingEffect2);
+
+        spells.getSpellSet().add(testingList);
+        spells.getSpellSet().add(testingList2);
+
+        IO.createFile(spells);*/
         game();
     }
 
@@ -36,7 +59,7 @@ public class Main {
 
         for(int i = 0; i < npcGenerate; i++)
         {
-            characterNumber[i] = new Human("NPC " + i+1, 1,testWep, Person.Side.getRandomSide(),
+            characterNumber[i] = new Human("NPC " + (i + 1), 1,testWep, Person.Side.getRandomSide(),
                     Person.ClassRole.getRandomRole());
         }
     }

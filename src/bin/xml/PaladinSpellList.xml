@@ -1,19 +1,34 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Spells>
-    <Spell effect="DAMAGE" type="TARGET">
+    <Spell>
+        <coolDown>0</coolDown>
+        <damageModifier>0</damageModifier>
+        <duration>0</duration>
         <name>Judgement</name>
-        <description>Sends a holy bolt at the target.</description>
+        <description>Sends a holy bolt at the caster's target</description>
         <manaCost>15</manaCost>
-        <duration>0</duration>
-        <coolDown>1</coolDown>
-        <damageModifier>5</damageModifier>
+        <effects effect="DAMAGE" type="TARGET">
+            <coolDown>0</coolDown>
+            <damageModifier>5</damageModifier>
+            <duration>0</duration>
+        </effects>
+        <effects effect="STUN" type="TARGET">
+            <coolDown>0</coolDown>
+            <damageModifier>0</damageModifier>
+            <duration>1</duration>
+        </effects>
     </Spell>
-    <Spell effect="HEAL" type="TARGET">
-        <name>Holy Light</name>
-        <description>Calls down the light to heals its target.</description>
-        <manaCost>20</manaCost>
+    <Spell>
+        <coolDown>0</coolDown>
+        <damageModifier>0</damageModifier>
         <duration>0</duration>
-        <coolDown>1</coolDown>
-        <damageModifier>5</damageModifier>
+        <name>Holy Light</name>
+        <description>Calls down a beam of light to heal the caster's target</description>
+        <manaCost>20</manaCost>
+        <effects effect="HEAL" type="TARGET">
+            <coolDown>0</coolDown>
+            <damageModifier>6</damageModifier>
+            <duration>0</duration>
+        </effects>
     </Spell>
 </Spells>

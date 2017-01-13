@@ -67,7 +67,8 @@ public class Person{
         ENERGY;
     }
 
-    private ArrayList<Spell> spells = new ArrayList<Spell>();
+    private ArrayList<Spell> spells = new ArrayList<>();
+    private ArrayList<Spell> buffSystem = new ArrayList<>();
 
     protected PersonStatus status;
     protected Side team;
@@ -154,6 +155,9 @@ public class Person{
         return jobType;
     }
     public ArrayList<Spell> getSpell(){ return spells;}
+    public ArrayList<Spell> getBuffSystem(){
+        return buffSystem;
+    }
 
     public void setResource(int resource) {
         this.resource = resource;
@@ -167,9 +171,12 @@ public class Person{
     public void setCurrent_Health(int current_Health) {
         this.current_Health = current_Health;
     }
-
     public void setStatus(PersonStatus status) {
         this.status = status;
+    }
+    public void setBuffSystem(Spell spell)
+    {
+        this.buffSystem.add(spell);
     }
 
     @Override
