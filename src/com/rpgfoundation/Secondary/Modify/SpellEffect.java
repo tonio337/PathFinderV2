@@ -23,6 +23,7 @@ public class SpellEffect {
     private int duration;
     private int coolDown;
     private int damageModifier;
+    private int damageOverTime;
 
     protected Mechanic effect;
     protected TargetType type;
@@ -40,7 +41,7 @@ public class SpellEffect {
     }
 
     @XmlAttribute
-    public Mechanic getMechanic() {
+    public Mechanic getEffect() {
         return effect;
     }
     @XmlAttribute
@@ -71,8 +72,14 @@ public class SpellEffect {
     public int getDamageModifier(){
         return damageModifier;
     }
+    public int getDamageOverTime(){
+        return damageOverTime;
+    }
 
     public void setType(TargetType type) {
         this.type = type;
+    }
+    public void setDamageOverTime(int damageOverTime){
+        this.damageOverTime = damageOverTime;
     }
 }

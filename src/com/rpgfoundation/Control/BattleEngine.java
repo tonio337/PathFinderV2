@@ -21,14 +21,12 @@ public class BattleEngine {
                 return Integer.valueOf(o2.getAttribute().getDexterity()).compareTo(o1.getAttribute().getDexterity());
             }
         });
-    }   //Function to sort it descending the arrayList via haste value
+    }   //Function to sort it descending the arrayList via dexterity value
 
 
     public static void turnEnd(Person player) {
         if(!player.getBuffSystem().isEmpty())
         {
-            System.out.println("Buff System is not empty");
-            System.out.println("Buff that are on the units");
             for(int i = 0; i < player.getBuffSystem().size(); i++)
             {
                 player.getBuffSystem().get(i).buffAfter(player);

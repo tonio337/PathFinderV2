@@ -160,8 +160,8 @@ public class IO {
         try {
             JAXBContext jaxbContext = JAXBContext.newInstance(SpellHolder.class);
             Unmarshaller breakdown = jaxbContext.createUnmarshaller();
-            SpellHolder paladinSpell = (SpellHolder) breakdown.unmarshal(files);
-            for (Spell spe : paladinSpell.getSpellSet())
+            SpellHolder spellListHolder = (SpellHolder) breakdown.unmarshal(files);
+            for (Spell spe : spellListHolder.getSpellSet())
                 mainList.add(spe);
             return mainList;
         }catch(JAXBException e)

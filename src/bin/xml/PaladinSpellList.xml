@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Spells>
     <Spell>
-        <coolDown>0</coolDown>
-        <damageModifier>0</damageModifier>
-        <duration>0</duration>
         <name>Judgement</name>
         <description>Sends a holy bolt at the caster's target</description>
         <manaCost>15</manaCost>
@@ -12,10 +9,10 @@
             <damageModifier>5</damageModifier>
             <duration>0</duration>
         </effects>
-        <effects effect="STUN" type="TARGET">
+        <effects effect="BURN" type="TARGET">
             <coolDown>0</coolDown>
-            <damageModifier>0</damageModifier>
-            <duration>1</duration>
+            <damageModifier>2</damageModifier>
+            <duration>2</duration>
         </effects>
     </Spell>
     <Spell>

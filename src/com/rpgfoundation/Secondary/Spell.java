@@ -40,39 +40,36 @@ public class Spell extends SpellEffect{
     public String toString() {
         return name;
     }
+    //Getter functions for  the spell class.
     public String getName() {
         return name;
-    }
-    public List<SpellEffect> getEffects(){
-        return effects;
     }
     public int getManaCost(){
         return manaCost;
     }
-
     public String getDescription() {
         return description;
     }
-
-    public void setName(String name) {
-        this.name = name;
+    //Getter function to access the SpellEffect class
+    public List<SpellEffect> getEffects(){
+        return effects;
+    }
+    public SpellEffect getSpellEffect(){
+        return spellEffect;
     }
 
 
-
-    public void cast(Person caster, Person target)
-    {
+    public void cast(Person caster, Person target) {
         caster.setCurrent_Resource(caster.getCurrent_Resource() - getManaCost());
-        System.out.println(caster.getCurrent_Resource());
         applySpell(caster, target);
     }
-
-    public void applySpell(Person caster, Person target)
-    {
+    public void applySpell(Person caster, Person target) {
         for(SpellEffect effect : getEffects())
-        switch(effect.getMechanic())
+        switch(effect.getEffect())
         {
             case DAMAGE:
+                target.setCurrent_Health(target.getCurrent_Health() - caster.getAttribute().getStrength()*effect.getDamageModifier());
+                IO.damageReport(caster,target,caster.getAttribute().getStrength()*effect.getDamageModifier());
                 damageMechanic(caster,target,this);
                 break;
             case HEAL:
@@ -80,9 +77,11 @@ public class Spell extends SpellEffect{
                 break;
             case CURSE:
                 target.setBuffSystem(this);
+                setDamageOverTime(caster.getAttribute().getIntellect()*getDamageModifier());
                 break;
             case BURN:
                 target.setBuffSystem(this);
+                setDamageOverTime((int)caster.getAttribute().getIntellect()*getDamageModifier());
                 break;
             case SLEEP:
                 target.setStatus(Person.PersonStatus.SLEEP);
@@ -99,15 +98,19 @@ public class Spell extends SpellEffect{
             default:
         }
     }
-
-    public void buffAfter(Person player)
-    {
+    public void buffAfter(Person player) {
         //TODO: Apply the effect of the mechanic of the spell to lower its duration and damaging the player.
-        switch(getMechanic())
+        switch(getEffect())
         {
             case BURN:
+                player.setCurrent_Health(player.getCurrent_Health()-getDamageOverTime());
+                int turnLeft = getDuration();
+                turnLeft--;
+                if(turnLeft == 0)
+                    player.getBuffSystem().remove(this);
                 break;
             case CURSE:
+                player.setCurrent_Health(player.getCurrent_Health()-getDamageOverTime());
                 break;
             case STUN:
                 break;
@@ -121,14 +124,11 @@ public class Spell extends SpellEffect{
 
     }
 
-    public void damageMechanic(Person caster, Person target, SpellEffect effect)
-    {
-        target.setCurrent_Health(target.getCurrent_Health() - caster.getAttribute().getStrength()*effect.getDamageModifier());
-        IO.damageReport(caster,target,target.getAttribute().getStrength()*effect.getDamageModifier());
-    }
+    public void damageMechanic(Person caster, Person target, SpellEffect effect){
 
-    public void healMechanic(Person caster, Person target, SpellEffect effect)
-    {
+
+    }
+    public void healMechanic(Person caster, Person target, SpellEffect effect) {
         if(target.getCurrent_Health() == target.getHealth())
         {
             target.setCurrent_Health(target.getHealth());
