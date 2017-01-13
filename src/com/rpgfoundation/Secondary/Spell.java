@@ -104,21 +104,14 @@ public class Spell extends SpellEffect{
         {
             case BURN:
                 player.setCurrent_Health(player.getCurrent_Health()-getDamageOverTime());
-                int turnLeft = getDuration();
-                turnLeft--;
-                if(turnLeft == 0)
-                    player.getBuffSystem().remove(this);
+                spellEnding(player,this);
                 break;
             case CURSE:
                 player.setCurrent_Health(player.getCurrent_Health()-getDamageOverTime());
+                spellEnding(player,this);
                 break;
-            case STUN:
-                break;
-            case SLEEP:
-                break;
-            case INCREASESTATS:
-                break;
-            case DECREASESTATS:
+            default:
+                spellEnding(player,this);
                 break;
         }
 
@@ -126,6 +119,19 @@ public class Spell extends SpellEffect{
 
     public void damageMechanic(Person caster, Person target, SpellEffect effect){
 
+
+    }
+
+    public void spellEnding(Person player,Spell spell)
+    {
+        int turnLeft = getDuration();
+        turnLeft--;
+        if(turnLeft == 0) {
+            player.getBuffSystem().remove(this);
+            if (!player.isStatus(Person.PersonStatus.ALIVE)) {
+                player.setStatus(Person.PersonStatus.ALIVE);
+            }
+        }
 
     }
     public void healMechanic(Person caster, Person target, SpellEffect effect) {
