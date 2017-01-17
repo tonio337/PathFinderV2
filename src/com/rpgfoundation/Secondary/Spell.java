@@ -117,6 +117,7 @@ public class Spell extends SpellEffect{
 
     }
 
+    //Doing damage mechanic
     public void damageMechanic(Person caster, Person target, SpellEffect effect){
 
 
