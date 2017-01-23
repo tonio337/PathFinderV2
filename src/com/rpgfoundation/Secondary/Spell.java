@@ -75,7 +75,8 @@ public class Spell extends SpellEffect{
             case HEAL:
                 healMechanic(caster,target,this);
                 break;
-            case CURSE, BURN:
+            case BURN:
+            case CURSE:
                 target.setBuffSystem(this);
                 setDamageOverTime((int)caster.getAttribute().getIntellect()*getDamageModifier());
                 break;
@@ -98,7 +99,8 @@ public class Spell extends SpellEffect{
         //TODO: Apply the effect of the mechanic of the spell to lower its duration and damaging the player.
         switch(getEffect())
         {
-            case BURN, CURSE:
+            case BURN:
+            case CURSE:
                 player.setCurrent_Health(player.getCurrent_Health()-getDamageOverTime());
             default:
                 spellEnding(player,this);
