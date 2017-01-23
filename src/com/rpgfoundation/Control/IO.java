@@ -21,13 +21,15 @@ public class IO {
     public static int inputInt()
     {
         Scanner input = new Scanner(System.in);
-
-        try{
-            int choice = input.nextInt();
+        
+        while (true) {
+            try{
+                int choice = input.nextInt();
+            }catch(InputMismatchException e){
+                System.out.println("Choose again but with a integer!!!!");
+                continue;
+            }
             return choice;
-        }catch(InputMismatchException e){
-            System.out.println("Choose again but with a integer!!!!");
-            return inputInt();
         }
     }
 
